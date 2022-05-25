@@ -6,7 +6,7 @@ function renderBoard(mat, selector) {
     strHTML += "<tr>";
     for (var j = 0; j < mat[0].length; j++) {
       var cell = mat[i][j];
-
+      // comet
       var className = "cell cell-" + i + "-" + j;
       strHTML += '<td class="' + className + '"> ' + cell + " </td>";
     }
