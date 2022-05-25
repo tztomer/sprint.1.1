@@ -1,0 +1,31 @@
+body {
+  background-color: rgb(231, 214, 214);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90vw;
+  height: 90vh;
+  margin: auto;
+  flex-direction: column;
+}
+
+.boardContainer {
+  background: red;
+  width: auto;
+  height: auto;
+}
+
+td.cell {
+  width: 30px;
+  height: 30px;
+  background: gray;
+  /* transform: translate(10px, 10px); */
+  box-sizing: border-box;
+  padding: 6px;
+}
