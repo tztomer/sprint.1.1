@@ -1,30 +1,40 @@
 "use-strict";
-// tstt
-gMines = [];
 
-function creatNum(board) {
-  var num = {
+gNumbers = [];
+
+// function createNumbers(board, num) {
+//   console.log("nums1");
+//   for (let i = 0; i < num; i++) {
+//     // gCollect.add(iPosition, jPosition);
+//     // let iPosition = getRandomIntInt(0, 3);
+//     // let jPosition = getRandomIntInt(0, 3);
+//     console.log("im hehre");
+//     let create = createNumber(board, iPosition, jPosition);
+//   }
+// }
+
+function createNumber(board, i, j) {
+  const nums = {
     location: {
       i,
       j,
     },
-    isShown: true,
+    isShown: false,
+    // nums: num,
+    // icon: num,
   };
-  gMines.push(mine);
-  board[num.location.i][num.location.j] = num.isShown;
-  let currLocation = num.location;
-  console.log(num.icon);
-  renderCell(currLocation, `<td>${mine.icon}</td>`);
-}
 
-function createNums(board, num) {
-  console.log("dfjdslkfj");
-  for (let i = 0; i < num; i++) {
-    createNums(board, getRandomIntInt(0, 3), getRandomIntInt(0, 3));
-  }
-  return;
+  // gNumbers.push(nums.location);
+  // board[nums.location.i][nums.location.j] = nums.location;
+  // let currLocation = nums.location;
+  // console.log(nums.icon);
+  // renderCell(currLocation, `<td>${nums.nums}</td>`);
+  // return nums.nums;
+  // console.log("nummber func", nums.nums);
+  // return number;
 }
 
 function getGhostHTML(mines) {
   return `<td>${MINES}</td>`;
 }
+// console.log(collect);

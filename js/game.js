@@ -9,8 +9,7 @@ let GRAYBOX = "";
 let container = document.querySelector(".boardContainer").className;
 let selector = `.${container}`;
 
-let minsNumers = document.querySelector(".minsNumers");
-console.log(minsNumers);
+// console.log(minsNumers);
 
 console.log(selector);
 
@@ -19,8 +18,13 @@ let gBoard = [];
 function initGame() {
   console.log("im init");
   gBoard = createBoard();
+
   renderBoard(gBoard, selector);
-  createMines(gBoard, 4);
+
+  // console.log("fdsfdsfds", createMines(gBoard, 4));
+  checkNeg(gBoard);
+  sumMine(gBoard);
+  // checkNeg(gBoard);
 
   console.table(gBoard);
 }
@@ -38,3 +42,48 @@ function createBoard() {
 
   return innerBoard;
 }
+
+function checkNeg(gBoard) {
+  var locationNotAllow = [];
+  var cell = 0;
+  for (let i = 0; i < gBoard.length; i++) {
+    for (let j = 0; j < gBoard.length; j++) {
+      var mine = createMine(gBoard);
+      if (gBoard[i][j] === true) continue;
+      createNumber(gBoard, mine.i++, mine.i++);
+      // cell = "<td>num?</td>";
+      // let ip = i;
+      // let ij = j;
+      // let obj = {
+      //   i: ip,
+      //   j: ij,
+      // };
+
+      // renderCell(obj, cell);
+    }
+  }
+}
+
+// [Array(2), Array(2), Array(2)]
+
+//
+// console.table(innerBoard);
+// function createNumber(gNumbers, i, j, nums) {
+//   const number = {
+//     location: {
+//       i,
+//       j,
+//     },
+//     isShown: false,
+//     nums: nums,
+//   };
+
+//   gNumbers.push(number);
+//   let currLocation = number.location.i;
+//   gNumbers[number.location.i] = number.isShown;
+//   let obj = { i: number.i, j: number.j };
+//   renderCell(obj, `<td>${number.nums}</td>`);
+
+//   // console.log("nummber func", number.nums);
+//   // return number;
+// }
