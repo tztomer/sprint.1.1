@@ -4,10 +4,20 @@ const FLAG = "📍";
 const MINES = "💥";
 const SMILE_HAPPY = "😁";
 const SMILE_SAD = "😔";
+const NUMBER = ["0", "1", "2", "3"];
+
 let GRAYBOX = "";
+
+const STATUS = {
+  HIDDEN: "hidden",
+  MANE: "mine",
+  NUMBER: "number",
+  MARKED: "marked",
+};
 
 let container = document.querySelector(".boardContainer").className;
 let selector = `.${container}`;
+let spans = document.querySelectorAll("span");
 
 // console.log(minsNumers);
 
@@ -16,74 +26,95 @@ console.log(selector);
 let gBoard = [];
 
 function initGame() {
-  console.log("im init");
-  gBoard = createBoard();
-
+  gBoard = createBoard(4, 4);
+  hendelEvents(gBoard);
   renderBoard(gBoard, selector);
-
-  // console.log("fdsfdsfds", createMines(gBoard, 4));
+  createMine(4);
   checkNeg(gBoard);
-  sumMine(gBoard);
-  // checkNeg(gBoard);
 
   console.table(gBoard);
 }
 
-function createBoard() {
-  const size = 4;
-  const innerBoard = [];
-  for (let i = 0; i < size; i++) {
-    innerBoard.push([]);
-    for (let j = 0; j < 4; j++) {
-      innerBoard[i][j] = GRAYBOX;
+function createBoard(boardZise, MinsNum) {
+  const board = [];
+
+  for (let i = 0; i < boardZise; i++) {
+    board.push([]);
+    for (let j = 0; j < boardZise; j++) {
+      board[i][j] = GRAYBOX;
+
+      // let num = createNumber(board, i, j, 0);
+      // board[i][j] = num;
     }
   }
   // console.table(innerBoard);
+  console.log(board);
 
-  return innerBoard;
+  return board;
 }
-
 function checkNeg(gBoard) {
   var locationNotAllow = [];
+
   var cell = 0;
-  for (let i = 0; i < gBoard.length; i++) {
-    for (let j = 0; j < gBoard.length; j++) {
-      var mine = createMine(gBoard);
-      if (gBoard[i][j] === true) continue;
-      createNumber(gBoard, mine.i++, mine.i++);
-      // cell = "<td>num?</td>";
-      // let ip = i;
-      // let ij = j;
-      // let obj = {
-      //   i: ip,
-      //   j: ij,
-      // };
-
-      // renderCell(obj, cell);
-    }
-  }
 }
+// let counter = 1;ג
 
-// [Array(2), Array(2), Array(2)]
+function checkNeg(board) {
+  board.forEach((row, x, arr) => {
+    row.forEach((cell, y, arr) => {
+      // first run!!!!!
+      let counter = 0;
+      if (cell.isMine) {
+        renderCell(cell.location, `<span>${MINES}</span>`);
+      } else {
+        let num = createNumber(board, x, y, 0);
+        // console.log("num", num);
+        let iLocation = num.location.i;
+        let jLocation = num.location.j;
 
-//
-// console.table(innerBoard);
-// function createNumber(gNumbers, i, j, nums) {
-//   const number = {
-//     location: {
-//       i,
-//       j,
-//     },
-//     isShown: false,
-//     nums: nums,
-//   };
+        console.log("the undifinde", board?.[iLocation - 1] < 0);
+        // console.log("the undifinde", board?.[iLocation + 1][jLocation] === 1);
 
-//   gNumbers.push(number);
-//   let currLocation = number.location.i;
-//   gNumbers[number.location.i] = number.isShown;
-//   let obj = { i: number.i, j: number.j };
-//   renderCell(obj, `<td>${number.nums}</td>`);
+        // console.log("i", iLocation);
+        // console.log("j", jLocation);
+        // console.log(cell.isMine);
+        // console.log(cell);
 
-//   // console.log("nummber func", number.nums);
-//   // return number;
-// }
+        if (board[iLocation][jLocation + 1] === undefined) return;
+        if (board[iLocation][jLocation - 1] === undefined) return;
+        if (board[iLocation][jLocation + 1] === undefined) return;
+        if (board[iLocation][jLocation - 1] === undefined) return;
+        if (board?.[iLocation + 1] > 4) return;
+        if (board?.[iLocation - 1] < 0) return;
+        // else ++counter;
+        if (board[iLocation][jLocation].isNumber === board[iLocation][jLocation + 1].isMine) {
+          [jLocation + 1].isMine;
+          ++counter;
+        }
+        if (board[iLocation][jLocation].isNumber === board[iLocation][jLocation + 1].isMine) {
+          // console.log("board", board[iLocation][jLocation].isNumber === board[iLocation][jLocation - 1].isMine);
+          ++counter;
+        }
+
+        if (counter >= 1) {
+          renderCell({ i: iLocation, j: jLocation }, `<span>${1}</span>`);
+        } else if (counter === 2) {
+          renderCell({ i: iLocation, j: jLocation }, `<span>${2}</span>`);
+        } else if (counter === 3) {
+          renderCell({ i: iLocation, j: jLocation }, `<span>${3}</span>`);
+        }
+        counter = 0;
+        // if (board[iLocation + 1][jLocation] === undefined) return;
+        // if (board[iLocation - 1][jLocation] === undefined) return;
+
+        // if(board[iLocation][jLocation+1] === cell.isMine)
+        // console.log("numObj", numObj);
+
+        // renderCell(cell, `<span>1</span>`);
+      }
+    });
+
+    // console.log("xy", x);
+    // sumMine();
+  });
+}

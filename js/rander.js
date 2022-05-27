@@ -1,20 +1,18 @@
 "use-strict";
-
 let minsNumers = document.querySelector(".minsNumers");
-function sumMine(mat) {
-  let sum = 0;
-  for (let i = 0; i < mat.length; i++) {
-    for (let j = 0; j < mat[0].length; j++) {
-      console.log("render", mat[i][j]);
-      if (mat[i][j].isShown === true) {
-        console.log("inm here");
-        sum += 1;
-      }
-    }
-  }
-  console.log("dum", sum);
-  minsNumers.textContent = sum;
-}
+// function sumMine() {
+//   let counter = 0;
+//   for (let i = 0; i < gBoard.length; i++) {
+//     for (let j = 0; j < gBoard.length; j++) {
+//       if (gBoard[i][j].isShown) {
+//         console.log("log", gBoard[i][j].isShown);
+//         counter++;
+//       }
+//     }
+//   }
+//   minsNumers.textContent = counter;
+//   return counter;
+// }
 
 function renderBoard(mat, selector) {
   var strHTML = '<table border="0"><tbody>';
@@ -37,13 +35,9 @@ function renderBoard(mat, selector) {
 function renderCell(location, value) {
   // Select the elCell and set the value
   let elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
-  console.log("elcell", elCell);
+  // console.log("elcell", elCell);
   elCell.innerHTML = value;
 }
-
 function getRandomIntInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
-var test = getRandomIntInt(1, 3);
-console.log(test);

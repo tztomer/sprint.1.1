@@ -2,35 +2,41 @@
 
 gMines = [];
 
-let collect = [];
-function createMine(board) {
-  var mine = {
-    location: {
-      i: getRandomIntInt(0, 4),
-      j: getRandomIntInt(0, 4),
-    },
-    isShown: true,
-    icon: MINES,
-  };
+//  Keep running antli׳a you find me different positions!!!!!!!
+function createMine(MinsNum) {
+  const mineObject = [];
 
-  // gMines.push(mine.location);
-  board[mine.location.i][mine.location.j] = mine;
-  let currLocation = mine.location;
-  // console.log(mine.icon);
-  renderCell(currLocation, `<td>${mine.icon}</td>`);
-  return mine.location;
+  while (mineObject.length <= MinsNum) {
+    var mine = {
+      location: {
+        i: getRandomIntInt(0, 4),
+        j: getRandomIntInt(0, 4),
+      },
+      isShown: false,
+      icon: MINES,
+      isMine: true,
+      isMarked: false,
+    };
+
+    mineObject.push(mine);
+  }
+
+  const found = mineObject.find(function (pos, i, arr) {
+    if (pos.location.i === mine.location.i && pos.location.j === mine.location.j);
+    {
+      // console.log(pos);
+
+      let exclude = arr.splice(i, 1);
+      return exclude;
+    }
+  });
+
+  mineObject.forEach(function (row, i, arr) {
+    gBoard[row.location.i][row.location.j] = row;
+  });
+
+  // console.log("gmias", gMines);
+  // console.log(found);
+
+  return gBoard;
 }
-
-// function createMines(board, num) {
-//   console.log("dfjdslkfj");
-//   for (let i = 0; i < num; i++) {
-//     // gCollect.add(iPosition, jPosition);
-//     console.log("im hehre");
-//     createMine(board);
-//   }
-// }
-
-// const arr = [6, 4., 6, 7, [1, 2, 3], [2, 3, 1]];
-
-// const res = arr.filter(pos1 => pos1 <= 3);
-// console.log("res", res);
