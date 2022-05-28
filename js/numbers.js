@@ -8,16 +8,17 @@ function createNumber(board, i, j, num = null) {
       i,
       j,
     },
-    isShown: true,
+    isShown: false,
     isNumber: true,
-    num,
+    num: num,
     icon: "📍",
   };
 
-  gNumbers.push(nums.location);
-  board[nums.location.i][nums.location.j] = nums;
+  board[i][j] = nums;
+  // renderCell({ i: el.location.i, j: el.location.j }, `<span>${MINES}</span>`);
 
-  // renderCell(currLocation, `<td>${nums.nums}</td>`);
+  // console.log(found);
+  // console.log(gNumbers);
   return nums;
 }
 

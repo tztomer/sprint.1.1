@@ -3,16 +3,16 @@
 gMines = [];
 
 //  Keep running antli׳a you find me different positions!!!!!!!
-function createMine(MinsNum) {
+function createMine(board, MinsNum, fromRange, toRange) {
   const mineObject = [];
 
   while (mineObject.length <= MinsNum) {
     var mine = {
       location: {
-        i: getRandomIntInt(0, 4),
-        j: getRandomIntInt(0, 4),
+        i: getRandomIntInt(fromRange, toRange),
+        j: getRandomIntInt(fromRange, toRange),
       },
-      isShown: false,
+      isShown: true,
       icon: MINES,
       isMine: true,
       isMarked: false,
@@ -26,17 +26,15 @@ function createMine(MinsNum) {
     {
       // console.log(pos);
 
-      let exclude = arr.splice(i, 1);
-      return exclude;
+      return arr.splice(i, 1);
     }
   });
-
-  mineObject.forEach(function (row, i, arr) {
-    gBoard[row.location.i][row.location.j] = row;
+  mineObject.forEach((el, i, arr) => {
+    board[el.location.i][el.location.j] = el;
+    renderCell({ i: el.location.i, j: el.location.j }, `<span>${MINES}</span>`);
   });
 
-  // console.log("gmias", gMines);
   // console.log(found);
-
-  return gBoard;
+  console.log("mins", mineObject.length);
+  return mineObject;
 }

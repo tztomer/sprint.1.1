@@ -10,8 +10,10 @@ function hendelEvents(board) {
     });
 
     el.addEventListener("contextmenu", e => {
-      e.preventDefault;
-      console.log(e.target);
+      // e.preventDefault();
+      // e.textContent = "📍";
+      // e.target.innerText = e.textContent;
+      // console.log(e.target);
     });
   });
 }

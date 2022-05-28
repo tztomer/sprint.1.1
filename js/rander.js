@@ -34,8 +34,9 @@ function renderBoard(mat, selector) {
 // location such as: {i: 2, j: 7}
 function renderCell(location, value) {
   // Select the elCell and set the value
+  console.log("render i j", location.i, location.j);
   let elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
-  // console.log("elcell", elCell);
+  console.log("elcell", elCell);
   elCell.innerHTML = value;
 }
 function getRandomIntInt(min, max) {
