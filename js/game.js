@@ -33,8 +33,12 @@ function initGame() {
   checkMine(gBoard);
   hendelEvents(gBoard);
   // checkNeg(gBoard);
-
+  sumMine(gBoard);
   console.table(gBoard);
+
+  // console.log(gBoard);
+  // var flat = gBoard.flat();
+  // console.log(flat);
 }
 
 function createBoard(boardZise) {
@@ -78,8 +82,8 @@ function checkMine(board) {
         createNumber(board, i, j);
         // 1
         if (
-          board[i][jOffset]?.isMine ||
-          (board[i][jInset]?.isMine && !board[iOffset][j]?.isMine) || // top same j
+          !board[i][jOffset]?.isMine ||
+          (!board[i][jInset]?.isMine && !board[iOffset][j]?.isMine) || // top same j
           !board[iOffset][jInset]
         ) {
           renderCell(board[i][j].location, `<span>1</span>`);

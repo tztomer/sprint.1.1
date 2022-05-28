@@ -35,6 +35,6 @@ function createMine(board, MinsNum, fromRange, toRange) {
   });
 
   // console.log(found);
-  console.log("mins", mineObject.length);
+  // console.log("mins", mineObject.length);
   return mineObject;
 }

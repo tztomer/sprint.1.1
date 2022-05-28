@@ -1,18 +1,13 @@
 "use-strict";
 let minsNumers = document.querySelector(".minsNumers");
-// function sumMine() {
-//   let counter = 0;
-//   for (let i = 0; i < gBoard.length; i++) {
-//     for (let j = 0; j < gBoard.length; j++) {
-//       if (gBoard[i][j].isShown) {
-//         console.log("log", gBoard[i][j].isShown);
-//         counter++;
-//       }
-//     }
-//   }
-//   minsNumers.textContent = counter;
-//   return counter;
-// }
+function sumMine(board) {
+  board = board.flat();
+  const sum = board.filter(function (cell, i, arr) {
+    if (cell.isMine) return cell;
+  });
+
+  minsNumers.textContent = sum.length;
+}
 
 function renderBoard(mat, selector) {
   var strHTML = '<table border="0"><tbody>';
