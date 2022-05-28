@@ -28,7 +28,7 @@ let gBoard = [];
 function initGame() {
   gBoard = createBoard(16);
   renderBoard(gBoard, selector);
-  createMine(gBoard, 120, 0, 16);
+  createMine(gBoard, 50, 0, 16);
 
   checkMine(gBoard);
   hendelEvents(gBoard);
@@ -54,30 +54,76 @@ function checkMine(board) {
   for (let i = 0; i < board[0].length; i++) {
     for (let j = 0; j < board[0].length; j++) {
       // console.log(cell);
-      console.log("board", board.length);
+      // console.log("board", board.length);
       // renderCell(board[i][j].location, `<span>${MINES}</span>`);
 
-      if (board[i][j] === "") {
+      if (j - 1 < 0) continue;
+      else let = jOffset = j - 1;
+
+      if (j + 1 > board[0].length) continue;
+      else let = jInset = j + 1;
+
+      if (i - 1 < 0) continue;
+      else let = iOffset = i - 1;
+
+      if (i + 1 === board[0].length || i === 16) continue;
+      else let = iInset = i + 1;
+
+      // if (board[i][j].isMine) {
+      //  enderCell(board[i][j].location, `<span>1</span>`);
+      //   }
+      // }
+
+      if (!board[i][j].isMine) {
         createNumber(board, i, j);
-
-        let jOffset = j - 1 < 0 ? (j = 0) : j - 1;
-        let jInset = j + 1 > board[0].length ? (j = 14) : j + 1;
-        let iOffset = i - 1 < 0 ? (i = 0) : i - 1;
-        let iInset = i + 1 >= board[0].length ? (i = 14) : i + 1;
-        let iZero = 0;
-        let jZero = 0;
-
-        // console.log("jInset", Iinset);
-        // no one love me o
-        console.log(i, j, iInset);
-        if (!board[iInset][j]?.isMind && !board[iOffset][j]?.isMind && !board[iOffset][jOffset]?.isMind && !board[iInset][jInset]?.isMind) {
-          renderCell(board[i][j].location, `<span>0</span>`);
+        // 1
+        if (
+          board[i][jOffset]?.isMine ||
+          (board[i][jInset]?.isMine && !board[iOffset][j]?.isMine) || // top same j
+          !board[iOffset][jInset]
+        ) {
+          renderCell(board[i][j].location, `<span>1</span>`);
         }
+
+        if (
+          // option 1 top right
+          !board[iOffset][j]?.isMine && // top same j
+          !board[iOffset][jInset]?.isMine &&
+          !board[i][jInset]?.isMine // row cell right
+          // (!board[iOffset][j]?.isMine && // top same j
+          //   !board[iInset][jOffset]?.isMine &&
+          //   !board[i][jOffset]?.isMine) ||
+          // (!board[i][jOffset]?.isMine && // row cell left
+          //   !board[iInset][jOffset]?.isMine &&
+          //   !board[iInset][j]?.isMine) ||
+          // (!board[iInset][jInset]?.isMine && !board[i][jInset]?.isMine && !board[iInset][jInset]?.isMine)
+        ) {
+          renderCell(board[i][j].location, `<span>3</span>`);
+        }
+
+        if (
+          !board[i][jOffset]?.isMine && // row cell left
+          !board[i][jInset]?.isMine && // row cell right
+          !board[iOffset][j]?.isMine &&
+          !board[iInset][j]?.isMine &&
+          !board[iOffset][jOffset]?.isMine &&
+          !board[iOffset][jInset]?.isMine &&
+          !board[iInset][jOffset]?.isMine &&
+          !board[iInset][jInset]?.isMine
+        ) {
+          renderCell(board[i][j].location, `<span>0</span>`);
+          continue;
+        }
+
+        // if (!board[iInset][j]?.isMind && !board[iOffset][j]?.isMind && !board[iOffset][jOffset]?.isMind && !board[iInset][jInset]?.isMind) {
+        //   renderCell(board[i][j].location, `<span>0</span>`);
+        // }
       }
 
       // console.log(number);
       // }
     }
     // if (pos.Iinset > board[0].length) i;
+    // break;
   }
 }
