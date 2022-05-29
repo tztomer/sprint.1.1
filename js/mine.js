@@ -1,7 +1,7 @@
 "use-strict";
 
 gMines = [];
-
+const MINES = "💥";
 //  Keep running antli׳a you find me different positions!!!!!!!
 function createMine(board, MinsNum, fromRange, toRange) {
   const mineObject = [];
@@ -31,7 +31,7 @@ function createMine(board, MinsNum, fromRange, toRange) {
   });
   mineObject.forEach((el, i, arr) => {
     board[el.location.i][el.location.j] = el;
-    renderCell({ i: el.location.i, j: el.location.j }, `<span>${MINES}</span>`);
+    renderCell({ i: el.location.i, j: el.location.j }, `<span class= "mine">${MINES}</span>`);
   });
 
   // console.log(found);

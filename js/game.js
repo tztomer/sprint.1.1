@@ -1,7 +1,9 @@
 "use-strict";
+// document.addEventListener("DOMContentLoaded", function (event) {
+//the event occurred
 
 const FLAG = "📍";
-const MINES = "💥";
+
 const SMILE_HAPPY = "😁";
 const SMILE_SAD = "😔";
 const NUMBER = ["0", "1", "2", "3"];
@@ -19,10 +21,6 @@ let container = document.querySelector(".boardContainer").className;
 let selector = `.${container}`;
 let spans = document.querySelectorAll("span");
 
-// console.log(minsNumers);
-
-console.log(selector);
-
 let gBoard = [];
 
 function initGame() {
@@ -32,13 +30,10 @@ function initGame() {
 
   checkMine(gBoard);
   hendelEvents(gBoard);
-  // checkNeg(gBoard);
-  sumMine(gBoard);
-  console.table(gBoard);
 
-  // console.log(gBoard);
-  // var flat = gBoard.flat();
-  // console.log(flat);
+  sumMine(gBoard);
+
+  console.table(gBoard);
 }
 
 function createBoard(boardZise) {

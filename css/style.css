@@ -3,6 +3,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .container {
@@ -28,4 +29,43 @@ td.cell {
   /* transform: translate(10px, 10px); */
   box-sizing: border-box;
   padding: 6px;
+}
+.popup p {
+  font-size: 45px;
+}
+.popup {
+  display: none;
+  background-color: cornsilk;
+  width: 500px;
+  height: 440px;
+  border-radius: 5px;
+  background-color: cornsilk;
+}
+
+.showMe {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+}
+
+button.play {
+  width: 220px;
+  height: 44px;
+  color: black;
+  font-size: 22px;
+}
+
+.minsNumers {
+  font-size: 30px;
+  background: #0e2c2a;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 14px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 }
